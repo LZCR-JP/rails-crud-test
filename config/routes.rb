@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+   # # Read all
+   # get "restaurants", to: "restaurants#index" # <-- displays all restaurants
+   # # Create
+   # get "restaurants/new", to: "restaurants#new", as: :new_restaurant
+   # post "restaurants", to: "restaurants#create"
+   # # Read one
+   # get "restaurants/:id", to: "restaurants#show", as: :restaurant # <-- displays restaurants by id
+   # # Update
+   # get "restaurants/:id/edit", to: "restaurants#edit", as: :edit_restaurant
+   # patch "restaurants/:id", to: "restaurants#update"
+   # # Delete
+   # delete "restaurants/:id", to: "restaurants#destroy"
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
-  get "restaurants", to: "restaurants#index" # <-- displays all restaurants
-  get "restaurants/:id", to: "restaurants#show" # <-- displays restaurants by id
+   resources :restaurants # <-- can have all that routes above
+  # resources :restaurants, only: <-- if you need all of the route you can specify
+  # resources :restaurants, except: <--- vice-versa
 end
